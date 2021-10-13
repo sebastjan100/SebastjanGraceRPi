@@ -67,9 +67,9 @@ print ("=========================================")
 
 #nastavimo prekinitve
 #GPIO.add_event_detect(pin, kdaj preberemo FALLING/RISING/ONCHANGE, katero funkcijo naj izvede, nastavimo koliko casa naj prekinitev pocaka pred ponovno izvedbo)
-GPIO.add_event_detect(clk, GPIO.FALLING, callback=clkClicked, bouncetime=300)
-GPIO.add_event_detect(dt, GPIO.FALLING, callback=dtClicked, bouncetime=300)
-GPIO.add_event_detect(sw, GPIO.FALLING, callback=swClicked, bouncetime=300)
+GPIO.add_event_detect(clk, GPIO.FALLING, callback=clkClicked, bouncetime=50)
+GPIO.add_event_detect(dt, GPIO.FALLING, callback=dtClicked, bouncetime=50)
+GPIO.add_event_detect(sw, GPIO.FALLING, callback=swClicked, bouncetime=50)
 
 input("Start monitoring input")
 
