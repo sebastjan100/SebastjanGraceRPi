@@ -14,4 +14,4 @@ while True:
         print(int(temperature), "    I    ", int(humidity))
     else:
         print("ni bilo mogoče uspostaviti povezave s senzorjem, preverite povezavo")
-	print("to je sprememba")
+	    print("to je sprememba")
