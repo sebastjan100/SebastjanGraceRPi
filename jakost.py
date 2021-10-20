@@ -36,6 +36,7 @@ def clkClicked(channel):
         dtState = GPIO.input(dt)
         if clkState == 0 and dtState == 1:
                 counter = counter + step
+                print ("Counter ", counter)
 
 def dtClicked(channel):
         global counter
@@ -46,6 +47,7 @@ def dtClicked(channel):
         
         if clkState == 1 and dtState == 0:
                 counter = counter - step
+                print ("Counter ", counter)
 
 
 def swClicked(channel):
