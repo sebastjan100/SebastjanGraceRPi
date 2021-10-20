@@ -23,7 +23,6 @@ GPIO.output(22,GPIO.LOW)
 time.sleep(1.5)
 print "LED on"
 GPIO.output(22,GPIO.HIGH)
-print "LED on"
 time.sleep(0.5)
 print "LED off"
 GPIO.output(22,GPIO.LOW)
