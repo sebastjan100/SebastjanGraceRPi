@@ -21,8 +21,8 @@ GPIO.setup(clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(dt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(sw, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-#preverimo in nastavimo prvotno stanje
-counter = 0#stevec zacne steti s 0
+
+counter = 0
 clkLastState = GPIO.input(clk)#preberemo stanje na pinu 17
 dtLastState = GPIO.input(dt)#preberemo stanje na pinu 18
 swLastState = GPIO.input(sw)#preberemo stanje na pinu 27 - key
@@ -65,9 +65,11 @@ input("Start monitoring input")
 
 if counter >= 100:
         counter = 100
+        print("deluje 1")
 
 if counter <= 0:
         counter = 0
+        print("deluje 2")
 
 GPIO.setup(rdeca, GPIO.OUT)
 pwm = GPIO.PWM(rdeca, 100)
@@ -77,5 +79,5 @@ pwm.ChangeDutyCycle(counter)
 print(counter)
 print("\nCtl C pressed - ending program")
 
-pwm.stop()                         # stop PWM
-GPIO.cleanup()                     # resets GPIO ports used back to input mode
+pwm.stop()
+GPIO.cleanup()
