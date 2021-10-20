@@ -29,7 +29,7 @@ try:
       time.sleep(0.05)             # wait .05 seconds at current LED brightness
       print(dc)
 except KeyboardInterrupt:
-  print("Ctl C pressed - ending program")
+  print("\nCtl C pressed - ending program")
 
 pwm.stop()                         # stop PWM
 GPIO.cleanup()                     # resets GPIO ports used back to input mode
