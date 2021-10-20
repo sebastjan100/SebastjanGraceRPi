@@ -64,11 +64,11 @@ input("Start monitoring input")
 
 
 if counter >= 100:
-        counter = 100
+        counter = 99
         print("deluje 1")
 
 if counter <= 0:
-        counter = 0
+        counter = 1
         print("deluje 2")
 
 print("\nCtl C pressed - ending program")
