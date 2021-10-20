@@ -12,7 +12,7 @@ GPIO.setup(rdeca,GPIO.OUT)
 while True:
         print ("LED on")
         GPIO.output(rdeca,GPIO.HIGH)
-        time.sleep(0.008)#8 ms
+        time.sleep(0.001)#8 ms
         print ("LED off")
         GPIO.output(rdeca,GPIO.LOW)
-        time.sleep(0.008)#8 ms
+        time.sleep(0.001)#8 ms
