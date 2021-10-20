@@ -63,12 +63,12 @@ GPIO.add_event_detect(sw, GPIO.FALLING, callback=swClicked, bouncetime=50)
 input("Start monitoring input")
 
 
-if counter <= 100:
-        counter = 100
+if counter >= 100:
+        counter -= 5
         print("deluje 1")
 
-if counter >= 0:
-        counter = 0
+if counter <= 0:
+        counter += 5
         print("deluje 2")
 
 print("\nCtl C pressed - ending program")
