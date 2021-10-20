@@ -1,41 +1,40 @@
 from RPi import GPIO
-import time
 
 rdeca = 22
 
-step = 5 #shranimo korak, ki ga pristejemo ali odstejejo, ko se zavrti enkoder
-paused = False #spremljamo stanje, kdaj se ustavimo
+step = 5
+paused = False 
 
-#povemo kako bomo nastavili GPIO pine; uporabljamo logicni nacin, to kar je napisano na GPIO clenu
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(rdeca, GPIO.OUT)
+pwm = GPIO.PWM(rdeca, 100)
 
-#clk in st sta spremenjlivki, ki povesta kam smo povezali pina (s1, s2)
-#sw je spremenjivka, ki pove kam je povezana tipka(key)
 clk = 17
 dt = 18
 sw = 27
+counter = 0
 
-#nastavimo vhodne in izhodne enote
-#GPIO.setup(pin, vhod/izhod, nacin)
+pwm.start(counter)
+
 GPIO.setup(clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(dt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(sw, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 
-counter = 0
-clkLastState = GPIO.input(clk)#preberemo stanje na pinu 17
-dtLastState = GPIO.input(dt)#preberemo stanje na pinu 18
-swLastState = GPIO.input(sw)#preberemo stanje na pinu 27 - key
 
-#define functions which will be triggered on pin state changes
+clkLastState = GPIO.input(clk)
+dtLastState = GPIO.input(dt)
+swLastState = GPIO.input(sw)
+
 def clkClicked(channel):
-        global counter#uporabimo globalni spremenjivko counter
-        global step#uporabimo globalni spremenjivko step
+        global counter
+        global step
 
         clkState = GPIO.input(clk)
         dtState = GPIO.input(dt)
         if clkState == 0 and dtState == 1:
                 counter = counter + step
+                pwm.ChangeDutyCycle(counter)
                 print ("Counter ", counter)
 
 def dtClicked(channel):
@@ -47,6 +46,7 @@ def dtClicked(channel):
         
         if clkState == 1 and dtState == 0:
                 counter = counter - step
+                pwm.ChangeDutyCycle(counter)
                 print ("Counter ", counter)
 
 
@@ -71,12 +71,6 @@ if counter <= 0:
         counter = 0
         print("deluje 2")
 
-GPIO.setup(rdeca, GPIO.OUT)
-pwm = GPIO.PWM(rdeca, 100)
-
-pwm.start(counter)
-pwm.ChangeDutyCycle(counter)
-print(counter)
 print("\nCtl C pressed - ending program")
 
 pwm.stop()
