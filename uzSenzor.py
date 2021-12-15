@@ -1,4 +1,4 @@
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 import time
 
 GPIO.setmode(GPIO.BCM)
@@ -36,3 +36,4 @@ if __name__ == "__main__":# izvajamo skripto uzSenzor
                 razd = distance()
                 print("izmerjena razdalja je", razd, "cm.")
                 time.sleep(2)
+
