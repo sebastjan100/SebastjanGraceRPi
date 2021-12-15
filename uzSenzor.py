@@ -28,7 +28,7 @@ def distance():
         
         razdalja = (razlikaCas * 34200)/2#izracujnamo razdaljo, delimo z dve ker zvok prepotuje dvojno pot do ovire
 
-        print("v spremenjivki __name__ se skriva", __name__)
+
         return razdalja
 
 if __name__ == "__main__":# izvajamo skripto uzSenzor
