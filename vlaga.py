@@ -1,29 +1,17 @@
-# to NI v while zanki
-import requests
 import Adafruit_DHT
 
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4
-url = "#"
-apikey = "tvoj API KEY"
-
-headers = {
-        "Authorization" : "Bearer " + apikey
-}
-
+print(" ˙C    I    vlaga%")
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     if humidity is not None and temperature is not None:
-        print("Temperatura je", temperature, "vlaga pa znaša", humidity)
-        # to JE v while zanki
-        data = {
-                "temp": temperature,
-                "hum": humidity
-        }
-
-        response = requests.post(url, json=data, headers=headers)
-        print(response.status_code) # če bo napaka: 500, če bo v redu: 200
+        if humidity is 90:
+            print("vlaga je zelo visoka")
+        else:
+            print("")
+        print(int(temperature), "    I    ", int(humidity))
     else:
-        print("Ni bilo mogoče uspostaviti komuinikacije s senzorjem, preverite povezavo.")
-        print("Najverjetneje so žice narobe povezane")
+        print("ni bilo mogoče uspostaviti povezave s senzorjem, preverite povezavo")
+        print("to ni bilo mogoce")
