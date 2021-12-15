@@ -4,7 +4,7 @@ import Adafruit_DHT
 
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4
-url = "#"
+url = "https://GraceWebApp-SebastjanTekavc.online404.repl.co"
 apikey = "sebastjan"
 
 headers = {
