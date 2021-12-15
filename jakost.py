@@ -25,12 +25,11 @@ def clkClicked(channel):
         clkState = GPIO.input(clk)
         dtState = GPIO.input(dt)
 
-        if clkState == 0 and dtState == 1 and dc < 96:#if dt's state is 1 and clk's state is 0 that means that dt is infront of clk and so we are moving clockwise
+        if clkState == 0 and dtState == 1 and dc < 96:
                 dc += 5
  
 def dtClicked(channel):
         global dc
-        #Premikamo se v smeri urinega kazalca, če je pin 17 == 1 in pin 18 == 0
         clkState = GPIO.input(clk)
         dtState = GPIO.input(dt)
 
@@ -41,16 +40,15 @@ GPIO.add_event_detect(clk, GPIO.FALLING, callback=clkClicked, bouncetime=20)
 GPIO.add_event_detect(dt, GPIO.FALLING, callback=dtClicked, bouncetime=20)
 
 # main loop of program
-print("\nPress Ctl C to quit \n")  # Print blank line before and after message.
-pwm.start(dc)                      # Start PWM with 0% duty cycle
-
+print("\nPress Ctl C to quit \n")
+pwm.start(dc)
 try:
-    while True:                      # Loop until Ctl C is pressed to stop.
+    while True:  
         pwm.ChangeDutyCycle(dc)
-        time.sleep(0.05)             # wait .05 seconds at current LED brightness
+        time.sleep(0.05)
         print(dc)
 except KeyboardInterrupt:
-    print("Ctl C pressed - ending program")
+    print("\nCtl C pressed - ending program")
 
-pwm.stop()                         # stop PWM
-GPIO.cleanup()                     # resets GPIO ports used back to input mode
+pwm.stop() 
+GPIO.cleanup() 
