@@ -9,9 +9,12 @@ while True:
 
     razd = uzSenzor.distance()
     print("Razdalja, ki jo izberemo, znasa %.lf cm. " % razd )
+    try:
+        if humidity is not None and temperature is not None:
+            print("Temperatura je", temperature, "vlaga pa znaša", humidity)
+        else:
+            print("ni bilo mogoče uspostaviti povezave s senzorjem, preverite povezavo")
+            print("to ni bilo mogoce")
 
-    if humidity is not None and temperature is not None:
-        print("Temperatura je", temperature, "vlaga pa znaša", humidity)
-    else:
-        print("ni bilo mogoče uspostaviti povezave s senzorjem, preverite povezavo")
-        print("to ni bilo mogoce")
+    except KeyboardInterrupt:
+        print("Uporabnik je pritisnil ctrl + c")
