@@ -32,8 +32,11 @@ def distance():
         return razdalja
 
 if __name__ == "__main__":# izvajamo skripto uzSenzor
-        while True:
-                razd = distance()
-                print("izmerjena razdalja je", razd, "cm.")
-                time.sleep(2)
-
+        try:
+                while True:
+                        razd = distance()
+                        print("izmerjena razdalja je", razd, "cm.")
+                        time.sleep(2)
+        except KeyboardInterrupt:
+                print("Uporabnik je pritisnil ctrl + c")
+                GPIO.cleanup
