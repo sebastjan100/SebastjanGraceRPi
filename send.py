@@ -5,7 +5,7 @@ import Adafruit_DHT
 DHT_SENSOR = Adafruit_DHT.DHT11
 DHT_PIN = 4
 url = "#"
-apikey = "tvoj API KEY"
+apikey = "sebastjan"
 
 headers = {
         "Authorization" : "Bearer " + apikey
