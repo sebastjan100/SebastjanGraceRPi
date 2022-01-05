@@ -13,17 +13,19 @@ headers = {
 
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+    try:
+        if humidity is not None and temperature is not None:
+            print("Temperatura je", temperature, "vlaga pa znaša", humidity)
+            # to JE v while zanki
+            data = {
+                    "temp": temperature,
+                    "hum": humidity
+            }
 
-    if humidity is not None and temperature is not None:
-        print("Temperatura je", temperature, "vlaga pa znaša", humidity)
-        # to JE v while zanki
-        data = {
-                "temp": temperature,
-                "hum": humidity
-        }
-
-        response = requests.post(url, json=data, headers=headers)
-        print(response.status_code) # če bo napaka: 500, če bo v redu: 200
-    else:
-        print("Ni bilo mogoče uspostaviti komuinikacije s senzorjem, preverite povezavo.")
-        print("Najverjetneje so žice narobe povezane")
+            response = requests.post(url, json=data, headers=headers)
+            print(response.status_code) # če bo napaka: 500, če bo v redu: 200
+        else:
+            print("Ni bilo mogoče uspostaviti komuinikacije s senzorjem, preverite povezavo.")
+            print("Najverjetneje so žice narobe povezane")
+    except KeyboardInterrupt:
+        print("Uporabnik je pritisnil ctrl + c")
