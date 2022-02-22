@@ -8,7 +8,7 @@ echo = 19
 print(echo)
 
 try: 
-    UZ.initialize(26, 19)
+    UZ.inicialize(26, 19)
     while True:
         razd = UZ.distance(trig, echo)
         print("Izmerjena razdalja je", razd, "cm.")
