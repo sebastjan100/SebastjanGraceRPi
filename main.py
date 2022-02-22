@@ -3,10 +3,12 @@ import time
 import uzSenzor as UZ
 
 trig = 26
+print(trig)
 echo = 19
+print(echo)
 
-try:
-    UZ.inicialize(trig, echo)
+try: 
+    UZ.initialize(26, 19)
     while True:
         razd = UZ.distance(trig, echo)
         print("Izmerjena razdalja je", razd, "cm.")
