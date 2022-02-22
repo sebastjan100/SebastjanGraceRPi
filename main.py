@@ -44,6 +44,9 @@ draw = ImageDraw.Draw(image)
 while True:
     # Draw a black filled box to clear the image.
     draw.rectangle((0,0,width,height), outline=0, fill=0)
+
+    cmd = "hostname -I | cut -d\' \' -f1"
+
     IP = subprocess.check_output(cmd, shell = True )
     razd = UZ.distance(trig, echo)
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
