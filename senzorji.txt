@@ -1,0 +1,38 @@
+senzorje obicajno priklopimo na napajanje na RPi na 3v3 (+) in GND (-). 
+Nekateri senzorji delujejo na visi napetosti pa na 5v, pri tem moraamo zascititi VHODNE signale v RPi, to strorimo z napetostnimi delilniki(dvema uporoma), ki ustrezno zniza napetost.
+
+### uz senzorj ###
+5V povezemo na 5V!
+Echo --> GPIO19 (napetnosti delilnik 330 OHM,470 OHM)
+Triger --> GPIO26
+
+### DHT11 ###
+- v kolikor gledamo v sprednji del senzorja
+(mrezica) so nogice od LEVE proti DESNI
+VCC
+DATA --> GPIO4 (upor 10k OHM --> VCC 3v3)
+NC (not connected)
+GND
+
+### Enkoder ###
+5v --> 3v3
+key --> GPIO27
+s2 --> GPIO5
+s1 --> GPIO17
+GND
+
+### Pir senzor ###
+S --> GPIO13
+V --> VCC
+G --> GND
+
+### Oled ekran ###
+SDA --> SDA1
+SCL --> SCL1
+VCC
+GND
+
+### Led strip ###
+5V --> 5v !!
+Din --> GPIO21
+GND
