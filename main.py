@@ -79,14 +79,14 @@ while True:
     disp.display()
     time.sleep(.1)
 
-    try: 
-        UZ.inicialize(26, 19)
-        while True:
-            razd = UZ.distance(trig, echo)
-            print("Izmerjena razdalja je", razd, "cm.")
-            time.sleep(0.1)
+try: 
+    UZ.inicialize(26, 19)
+    while True:
+        razd = UZ.distance(trig, echo)
+        print("Izmerjena razdalja je", razd, "cm.")
+        time.sleep(0.1)
 
 
-    except KeyboardInterrupt:
-        print("Uporabnik je pritisnil ctrl + c.")
-        GPIO.cleanup()
+except KeyboardInterrupt:
+    print("Uporabnik je pritisnil ctrl + c.")
+    GPIO.cleanup()
