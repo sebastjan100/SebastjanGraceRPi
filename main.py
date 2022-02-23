@@ -65,12 +65,12 @@ while True:
     cmd = "hostname -I | cut -d\' \' -f1"
 
     IP = subprocess.check_output(cmd, shell = True )
-    #razd = UZ.distance(trig, echo)
+    razd = UZ.distance(trig, echo)
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     # Write two lines of text.
     draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
-    #draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
+    draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
     draw.text((x, top + 16),    "hum: " + str(humidity),  font=font, fill=255)
     draw.text((x, top + 25),    "temp: " + str(temperature),  font=font, fill=255)
 
@@ -84,7 +84,7 @@ try:
     while True:
         razd = UZ.distance(trig, echo)
         print("Izmerjena razdalja je", razd, "cm.")
-        time.sleep(2)
+        time.sleep(0.1)
 
 
 except KeyboardInterrupt:
