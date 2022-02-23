@@ -90,3 +90,7 @@ try:
 except KeyboardInterrupt:
     print("Uporabnik je pritisnil ctrl + c.")
     GPIO.cleanup()
+
+finally:
+   print("clean up") 
+   GPIO.cleanup() # cleanup all GPIO
