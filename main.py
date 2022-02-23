@@ -69,10 +69,10 @@ while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     # Write two lines of text.
-    draw.text((x, top),       "IP: " + IP,  font=font, fill=255)
-    draw.text((x, top + 8),     "razd: " + razd, font=font, fill=255)
-    draw.text((x, top + 16),    "hum: " + humidity,  font=font, fill=255)
-    draw.text((x, top + 25),    "temp: " + temperature,  font=font, fill=255)
+    draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
+    #draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
+    draw.text((x, top + 16),    "hum: " + str(humidity),  font=font, fill=255)
+    draw.text((x, top + 25),    "temp: " + str(temperature),  font=font, fill=255)
 
     # Display image.
     disp.image(image)
