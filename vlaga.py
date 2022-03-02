@@ -1,20 +1,17 @@
 import Adafruit_DHT
-import uzSenzor
 
 DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 4
 
-while True:
-    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+def setDHT_pin(dht_pin):
+    #DHT_PIN=4
+    global DHT_PIN
+    DHT_PIN = dht_pin
 
-    razd = uzSenzor.distance()
-    print("Razdalja, ki jo izberemo, znasa %.lf cm. " % razd )
-    try:
-        if humidity is not None and temperature is not None:
-            print("Temperatura je", temperature, "vlaga pa znaša", humidity)
-        else:
-            print("ni bilo mogoče uspostaviti povezave s senzorjem, preverite povezavo")
-            print("to ni bilo mogoce")
+def get_humidity():
+    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENZOR, DHT_PIN)
 
-    except KeyboardInterrupt:
-        print("Uporabnik je pritisnil ctrl + c")
+    if humidity is not None and temperature is not None:
+        return (humidity, temperature)
+
+    else:
+        return("No data hum", "No data temp")

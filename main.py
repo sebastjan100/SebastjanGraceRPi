@@ -1,14 +1,17 @@
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 import time
+#####dht
+import vlaga as DHT
+
+#####uz
+import uzSenzor as US
 
 #####oled ekran
 import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
 
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
+from PIL import Image, imigeDraw, imigeFont
 
 import subprocess
 
@@ -24,7 +27,6 @@ disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
 
 #####dht
 DHT_SENSOR = Adafruit_DHT.DHT11
-DHT_PIN = 4
 
 #####uz senzor
 trig = 26
@@ -41,10 +43,12 @@ disp.display()
 
 width = disp.width
 height = disp.height
+
 image = Image.new('1', (width, height))
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
+draw.rectangle((0,0,width,height), outline=0, fill=0)
 
 # Draw some shapes.
 # First define some constants to allow easy resizing of shapes.
@@ -58,35 +62,37 @@ x = 0
 # Load default font.
 font = ImageFont.load_default()
 
-while True:
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0,0,width,height), outline=0, fill=0)
-
-    cmd = "hostname -I | cut -d\' \' -f1"
-
-    IP = subprocess.check_output(cmd, shell = True )
-    #razd = UZ.distance(trig, echo)
-    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
-
-    # Write two lines of text.
-    draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
-    #draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
-    draw.text((x, top + 16),    "hum: " + str(humidity),  font=font, fill=255)
-    draw.text((x, top + 25),    "temp: " + str(temperature),  font=font, fill=255)
-
-    # Display image.
-    disp.image(image)
-    disp.display()
-    time.sleep(.1)
-
-try: 
-    UZ.inicialize(26, 19)
-    while True:
-        razd = UZ.distance(trig, echo)
-        print("Izmerjena razdalja je", razd, "cm.")
-        time.sleep(0.1)
-
+try:
+    trig = 26
+    echo = 19
+    US.initialize(trig, echo)
+    
+    dht_pin = 4
+    DHT.setDHT_pin(dht_pin)
+    while true:
+        # Draw a black filled box to clear the image.
+        draw.rectangle((0,0,width,height), outline=0, fill=0)
+    
+        cmd = "hostname -I | cut -d\' \' -f1"
+    
+        IP = subprocess.check_output(cmd, shell = True )
+        razd = US.distance(trig, echo)
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+    
+        # Write two lines of text.
+        draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
+        draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
+        draw.text((x, top + 16),    "hum: " + str(humidity),  font=font, fill=255)
+        draw.text((x, top + 25),    "temp: " + str(temperature),  font=font, fill=255)
+    
+        # Display image.
+        disp.image(image)
+        disp.display()
+        time.sleep(2)
 
 except KeyboardInterrupt:
     print("Uporabnik je pritisnil ctrl + c.")
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
+    disp.imige(imige)
+    disp.display()
     GPIO.cleanup()

@@ -1,43 +1,47 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.setwarnings(False)
+
 GPIO.setmode(GPIO.BCM)
 
-trig = 26
-echo = 24
+def initialize(trig, echo):
+    #trig = 26
+    #echo = 24
+    GPIO.setup(trig, GPIO.OUT)
+    GPIO.setup(echo, GPIO.IN)
 
-GPIO.setup(trig, GPIO.OUT)
-GPIO.setup(echo, GPIO.IN)
+def distance(trig, echo):
+    GPIO.output(trig, GPIO.HIGH)#GPIO.HIGH = 1 = True
+    time.sleep(0.00001)
+    GPIO.output(trig, GPIO.LOW)#GPIO.HIGH = 0 = False
 
-def distance():
+    start_time = time.time()#time in seconds from 1.1.1970
+    final_time = time.time()
+    timeout_time = time.time()
 
-        GPIO.output(trig, 1)#zapiskamo
-        time.sleep(0.00001)#pocakamo  0.01ms
-        GPIO.output(trig, 0)#nehamo piskat
+    while GPIO.input(echo) == 0:
+        start_time = time.time()
+        if start_time - timeout_time >= 3:
+            return "Error recieving nothing."
+            break
+    
+    while GPIO.input(echo) == 1:
+        final_time = time.time()
+    
+    distance = (final_time - start_time) / 2 * 34200#sound travels 342m in a second
+    #print("__name__:", __name__)
+    return distance
 
-        zacetniCas = time.time()
-        koncniCas = time.time()
+if __name__ == "__main__":
+    #running ultra_sonic_sensor.py script
+    try:
+        trig = 26
+        echo = 19
+        initialize(trig, echo)
+        while True:
+            distance = calculate_distance(trig, echo)
+            print("Measured distance: %.1f cm." % distance)
 
-        while GPIO.input(echo) == 0:#cakamo dokler je tisina
-                zacetniCas = time.time()#zapisemo si zadnji cas ko je tisina
-
-        while GPIO.input(echo) == 1:#cakamo dokler slisimo pisk
-                koncniCas = time.time()#zapisemo si cas konca piska
-
-        razlikaCas = koncniCas - zacetniCas
-        
-        razdalja = (razlikaCas * 34200)/2#izracujnamo razdaljo, delimo z dve ker zvok prepotuje dvojno pot do ovire
-
-
-        return razdalja
-
-if __name__ == "__main__":# izvajamo skripto uzSenzor
-        try:
-                while True:
-                        razd = distance()
-                        print("izmerjena razdalja je", razd, "cm.")
-                        time.sleep(2)
-        except KeyboardInterrupt:
-                print("Uporabnik je pritisnil ctrl + c")
-                GPIO.cleanup
-            
+            time.sleep(2)
+    except KeyboardInterrupt:
+        print("Ctrl-c pressed --> exiting.")
+        GPIO.cleanup()
