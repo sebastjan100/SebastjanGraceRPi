@@ -23,7 +23,7 @@ GND
 
 ### Pir senzor ###
 S --> GPIO13
-V --> VCC
+v --> VCC
 G --> GND
 
 ### Oled ekran ###
