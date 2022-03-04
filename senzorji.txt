@@ -1,5 +1,5 @@
 senzorje obicajno priklopimo na napajanje na RPi na 3v3 (+) in GND (-). 
-Nekateri senzorji delujejo na visi napetosti pa na 5v, pri tem moraamo zascititi VHODNE signale v RPi, to strorimo z napetostnimi delilniki(dvema uporoma), ki ustrezno zniza napetost.
+Nekateri senzorji delujejo na visji napetosti  5v, pri tem moramo zascititi VHODNE signale v RPi, to strorimo z napetostnimi delilniki(dvema uporoma), ki ustrezno zniza napetost.
 
 ### uz senzorj ###
 5V povezemo na 5V!
