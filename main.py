@@ -95,6 +95,6 @@ try:
 except KeyboardInterrupt:
     print("Uporabnik je pritisnil ctrl + c.")
     draw.rectangle((0,0,width,height), outline=0, fill=0)
-    disp.imige(imige)
+    disp.imige('1', (width, height))
     disp.display()
     GPIO.cleanup()
