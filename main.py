@@ -79,7 +79,7 @@ try:
     
         IP = subprocess.check_output(cmd, shell = True )
         razd = US.distance(trig, echo)
-        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
+        humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_pin)
     
         # Write two lines of text.
         draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
