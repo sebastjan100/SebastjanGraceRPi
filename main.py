@@ -71,7 +71,7 @@ try:
     
     dht_pin = 4
     DHT.setDHT_pin(dht_pin)
-    while true:
+    while True:
         # Draw a black filled box to clear the image.
         draw.rectangle((0,0,width,height), outline=0, fill=0)
     
