@@ -8,7 +8,7 @@ import vlaga as DHT
 import uzSenzor as US
 
 #####oled ekran
-import Adafruit_GPIO.SPI as SPI
+#import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
 
 from PIL import Image
