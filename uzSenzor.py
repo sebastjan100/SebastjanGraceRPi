@@ -38,7 +38,7 @@ if __name__ == "__main__":
         echo = 19
         initialize(trig, echo)
         while True:
-            distance = calculate_distance(trig, echo)
+            distance = distance(trig, echo)
             print("Measured distance: %.1f cm." % distance)
 
             time.sleep(2)
