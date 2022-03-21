@@ -13,7 +13,7 @@ try:
     while True:
         if GPIO.input(PIR_PIN):
             x += 1
-            print ("Detected" + str(x) + "Motion")
+            print ("Detected " + str(x) + " motion")
         time.sleep(1)
 except KeyboardInterrupt:
     print ("Quit")
