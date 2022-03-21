@@ -26,3 +26,4 @@ while True:
     else:
         print("Ni bilo mogoče uspostaviti komuinikacije s senzorjem, preverite povezavo.")
         print("Najverjetneje so žice narobe povezane")
+        

@@ -15,3 +15,4 @@ def get_humidity():
 
     else:
         return("No data hum", "No data temp")
+

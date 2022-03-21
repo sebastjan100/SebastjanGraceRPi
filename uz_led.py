@@ -23,6 +23,7 @@ def distance(trig, echo):
         if start_time - timeout_time >= 3:
             return "Error recieving nothing."
             break
+
     
     while GPIO.input(echo) == 1:
         final_time = time.time()

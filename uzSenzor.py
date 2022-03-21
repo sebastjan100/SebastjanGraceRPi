@@ -45,3 +45,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Ctrl-c pressed --> exiting.")
         GPIO.cleanup()
+
