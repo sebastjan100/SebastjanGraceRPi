@@ -14,7 +14,7 @@ try:
         if GPIO.input(PIR_PIN):
             x += 1
             print ("Detected " + str(x) + " motion")
-        time.sleep(0)
+        time.sleep(0.5)
 except KeyboardInterrupt:
     print ("Quit")
     GPIO.cleanup()
