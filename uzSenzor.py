@@ -39,9 +39,8 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                 initialize(trig, echo)
                 while True:
                         razd = distance(trig, echo)
-                        print("Izmerjena razdalja je", razd, "cm.")
+                        print("Izmerjena razdalja je", float(razd, 3), "cm.")
                         time.sleep(2)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
-            #neki
