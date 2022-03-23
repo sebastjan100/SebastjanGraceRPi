@@ -7,6 +7,14 @@ import vlaga as DHT
 #####uz
 import uzSenzor as US
 
+#####poslji
+import poslji
+
+#####Web app tingi
+url = "https://GraceWebApp-SebastjanTekavc.online404.repl.co"
+apikey = "sebastjan"
+
+
 #####oled ekran
 #import Adafruit_GPIO.SPI as SPI
 import Adafruit_SSD1306
@@ -79,13 +87,15 @@ try:
         IP = subprocess.check_output(cmd, shell = True )
         razd = US.distance(trig, echo)
         humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, dht_pin)
+        poslji.posljiUZ(razd, url, "/api/uz/", apikey)
     
         # Write two lines of text.
         draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
         draw.text((x, top + 8),     "razd: " + str(razd), font=font, fill=255)
         draw.text((x, top + 16),    "hum: " + str(humidity),  font=font, fill=255)
         draw.text((x, top + 25),    "temp: " + str(temperature),  font=font, fill=255)
-    
+        poslji.posljiDHT()
+        
         # Display image.
         disp.image(image)
         disp.display()
