@@ -17,7 +17,7 @@ apikey = "sebastjan"
 
 #####oled ekran
 #import Adafruit_GPIO.SPI as SPI
-#import Adafruit_SSD1306
+import Adafruit_SSD1306
 
 from PIL import Image
 from PIL import ImageDraw
