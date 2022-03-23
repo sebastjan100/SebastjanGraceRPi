@@ -4,45 +4,43 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 def initialize(trig, echo):
-    #trig = 26
-    #echo = 24
-    GPIO.setup(trig, GPIO.OUT)
-    GPIO.setup(echo, GPIO.IN)
+        # trig = 26
+        # echo = 19
+        GPIO.setup(trig, GPIO.OUT)
+        GPIO.setup(echo, GPIO.IN)
 
 def distance(trig, echo):
-    GPIO.output(trig, GPIO.HIGH)#GPIO.HIGH = 1 = True
-    time.sleep(0.00001)
-    GPIO.output(trig, GPIO.LOW)#GPIO.HIGH = 0 = False
+        
+        GPIO.output(trig, 1)#zapiskamo        
+        time.sleep(0.00001)#počakamo 0.01ms
+        GPIO.output(trig, 0) #nehamo piskat
 
-    start_time = time.time()#time in seconds from 1.1.1970
-    final_time = time.time()
-    timeout_time = time.time()
+        zacetniCas = time.time()
+        koncniCas = time.time()
 
-    while GPIO.input(echo) == 0:
-        start_time = time.time()
-        if start_time - timeout_time >= 3:
-            return "Error recieving nothing."
-            break
-    
-    while GPIO.input(echo) == 1:
-        final_time = time.time()
-    
-    distance = (final_time - start_time) / 2 * 34200#sound travels 342m in a second
-    #print("__name__:", __name__)
-    return distance
 
-if __name__ == "__main__":
-    #running ultra_sonic_sensor.py script
-    try:
-        trig = 26
-        echo = 19
-        initialize(trig, echo)
-        while True:
-            distance = distance(trig, echo)
-            print("Measured distance: %.1f cm." % distance)
+        while GPIO.input(echo) == 0: #čakamo dokler je tišina
+                zacetniCas = time.time() #zapišemo si zadnji čas ko je tišina
+        
+        while GPIO.input(echo) == 1: #čakamo dokler slišimo pisk
+                koncniCas = time.time() #zapišemo si čas konca piska
+        
+        razlikaCas = koncniCas - zacetniCas
 
-            time.sleep(2)
-    except KeyboardInterrupt:
-        print("Ctrl-c pressed --> exiting.")
-        GPIO.cleanup()
+        razdalja = (razlikaCas * 34200)/2 #izračunamo razdaljo, delimo z dve ker zvok prepotuje dvojno pot do ovire
 
+        #print("V spremenljivki __name__ se skriva", __name__)
+        return razdalja
+
+if __name__ == "__main__": #izvajamo skripto uzSenzor
+        try:
+                trig = 26
+                echo = 19
+                initialize(trig, echo)
+                while True:
+                        razd = distance(trig, echo)
+                        print("Izmerjena razdalja je", razd, "cm.")
+                        time.sleep(2)
+        except KeyboardInterrupt:
+                print("Uporabnik je pritisnil ctrl + c.")
+                GPIO.cleanup()
