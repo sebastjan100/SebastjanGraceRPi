@@ -1,4 +1,4 @@
-@@ -1,66 +1,65 @@
+
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 import time
