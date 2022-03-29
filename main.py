@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 import uzSenzor as UZ
-import dht as DHT
+import vlaga as DHT
 import poslji
 
 import Adafruit_SSD1306
