@@ -3,7 +3,7 @@ import time
 
 import uzSenzor as UZ
 import vlaga as DHT
-#import poslji
+import poslji
 
 import Adafruit_SSD1306
 
