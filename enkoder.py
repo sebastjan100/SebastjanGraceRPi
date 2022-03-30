@@ -63,7 +63,7 @@ def swClicked(channel):
         paused = not paused#obrnemo vrednost spremenjivke poused
         print ("Paused ", paused)
 
-defCounter():
+def Counter():
     global counter
     return counter
 
