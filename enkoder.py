@@ -76,6 +76,7 @@ if __name__ =="__main__":
     dt = 5
     sw = 27
 
+    GPIO.setmode(GPIO.BCM)
     initialize(clk, dt, sw)
     
     #nastavimo prekinitve
