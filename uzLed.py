@@ -2,9 +2,14 @@ import RPi.GPIO as GPIO
 import time
 import board
 import neopixel
+import random
 pixels = neopixel.NeoPixel(board.D21, 5)
 
 GPIO.setmode(GPIO.BCM)
+
+r = random(0,255)
+g = random(0,255)
+b = random(0,255)
 
 def initialize(trig, echo):
         # trig = 26
@@ -74,11 +79,26 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
-                            pixels[0] = (255,0,0)
-                            pixels[1] = (255,0,0)
-                            pixels[2] = (255,0,0)
-                            pixels[3] = (255,0,0)
-                            pixels[4] = (255,0,0)
+                            r = random(0,255)
+                            g = random(0,255)
+                            b = random(0,255)
+                            pixels[0] = (r,g,b)
+                            r = random(0,255)
+                            g = random(0,255)
+                            b = random(0,255)
+                            pixels[1] = (r,g,b)
+                            r = random(0,255)
+                            g = random(0,255)
+                            b = random(0,255)
+                            pixels[2] = (r,g,b)
+                            r = random(0,255)
+                            g = random(0,255)
+                            b = random(0,255)
+                            pixels[3] = (r,g,b)
+                            r = random(0,255)
+                            g = random(0,255)
+                            b = random(0,255)
+                            pixels[4] = (r,g,b)
                     
                     
                         time.sleep(0.5)
