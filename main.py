@@ -1,3 +1,4 @@
+print("to je ta koda")
 import RPi.GPIO as GPIO
 import time
 import uzSenzor as UZ
@@ -7,7 +8,7 @@ import Adafruit_SSD1306
 from PIL import Image, ImageDraw, ImageFont
 import subprocess
 
-print("to je ta koda")
+
 # Raspberry Pi pin configuration:
 RST = None     # on the PiOLED this pin isnt used
 # 128x32 display with hardware I2C:
