@@ -81,6 +81,9 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
                             k = random.randint(1,3)
                             if k == 1:
                                 r = 0
@@ -89,6 +92,9 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             if k == 3:
                                 b = 0
                             pixels[0] = (r,g,b)
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
                             k = random.randint(1,3)
                             if k == 1:
                                 r = 0
@@ -97,6 +103,9 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             if k == 3:
                                 b = 0
                             pixels[1] = (r,g,b)
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
                             k = random.randint(1,3)
                             if k == 1:
                                 r = 0
@@ -105,6 +114,9 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             if k == 3:
                                 b = 0
                             pixels[2] = (r,g,b)
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
                             k = random.randint(1,3)
                             if k == 1:
                                 r = 0
@@ -113,6 +125,9 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             if k == 3:
                                 b = 0
                             pixels[3] = (r,g,b)
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
                             k = random.randint(1,3)
                             if k == 1:
                                 r = 0
