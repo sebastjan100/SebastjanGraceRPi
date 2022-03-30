@@ -43,10 +43,44 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                 while True:
                         razd = distance(trig, echo)
                         print("Izmerjena razdalja je", razd, "cm.")
-
-                        if razd <= 10 and razd >= 7:
+                        if razd >= 15:
+                            pixels[0] = (0,0,0)
+                            pixels[1] = (0,0,0)
+                            pixels[2] = (0,0,0)
+                            pixels[3] = (0,0,0)
+                            pixels[4] = (0,0,0)
+                        if razd <= 15.9 and razd >= 13:
+                            pixels[0] = (0,255,0)
+                            pixels[1] = (0,0,0)
+                            pixels[2] = (0,0,0)
+                            pixels[3] = (0,0,0)
+                            pixels[4] = (0,0,0)
+                        if razd <= 12.9 and razd >= 11:
+                            pixels[0] = (200,255,0)
+                            pixels[1] = (200,255,0)
+                            pixels[2] = (0,0,0)
+                            pixels[3] = (0,0,0)
+                            pixels[4] = (0,0,0)
+                        if razd <= 10.9 and razd >= 9:
+                            pixels[0] = (255,255,0)
+                            pixels[1] = (255,255,0)
+                            pixels[2] = (255,255,0)
+                            pixels[3] = (0,0,0)
+                            pixels[4] = (0,0,0)
+                        if razd <= 8.9 and razd >= 7:
+                            pixels[0] = (255,180,0)
+                            pixels[1] = (255,180,0)
+                            pixels[2] = (255,180,0)
+                            pixels[3] = (255,180,0)
+                            pixels[4] = (0,0,0)
+                        if razd <= 6.9:
                             pixels[0] = (255,0,0)
-                        
+                            pixels[1] = (255,0,0)
+                            pixels[2] = (255,0,0)
+                            pixels[3] = (255,0,0)
+                            pixels[4] = (255,0,0)
+                    
+                    
                         time.sleep(2)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
