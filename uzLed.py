@@ -80,20 +80,20 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             g = random.randint(0,255)
                             b = random.randint(0,255)
                             if r > 0 and g > 0:
-                                b = 0
+                                b = random.randint(100,255)
                             pixels[0] = (r,g,b)
                             if g > 0 and b > 0:
-                                r = 0
+                                r = random.randint(100,255)
                             pixels[1] = (r,g,b)
                             r = random.randint(0,255)
                             g = random.randint(0,255)
                             b = random.randint(0,255)
                             pixels[2] = (r,g,b)
                             if r > 0 and g > 0:
-                                b = 0
+                                b = random.randint(100,255)
                             pixels[3] = (r,g,b)
                             if g > 0 and b > 0:
-                                r = 0
+                                r = random.randint(100,255)
                             pixels[4] = (r,g,b)
                     
                     
