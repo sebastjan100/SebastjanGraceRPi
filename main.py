@@ -18,8 +18,8 @@ RST = None     # on the PiOLED this pin isnt used
 disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
 
 # web app data
-url = "kva te briga moj url?"
-apikey = "kva te briga moj key?"
+url = "https://GraceWebApp-SebastjanTekavc.online404.repl.co"
+apikey = "sebastjan"
 
 # Initialize library.
 disp.begin()
