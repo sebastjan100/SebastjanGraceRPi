@@ -81,7 +81,7 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[4] = (255,0,0)
                     
                     
-                        time.sleep(0.1)
+                        time.sleep(0.5)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
