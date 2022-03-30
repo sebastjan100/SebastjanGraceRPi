@@ -50,7 +50,7 @@ def naklucje():
         g = 0
     if k == 3:
         b = 0
-    return(r,g,b)
+    return r,g,b
 
 
 
