@@ -120,9 +120,8 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
                             rainbow_cycle(0.001)
-                    
-                    
-                        #time.sleep(0.5)
+                            
+                        time.sleep(0.1)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
