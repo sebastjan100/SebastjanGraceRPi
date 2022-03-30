@@ -10,7 +10,7 @@ from PIL import ImageDraw
 from PIL import ImageFont
 
 import subprocess
-import valaga as DHT
+import vlaga as DHT
 
 GPIO.setmode(GPIO.BCM)
 
