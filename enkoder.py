@@ -11,7 +11,7 @@ GPIO.setmode(GPIO.BCM)
 #clk in st sta spremenjlivki, ki povesta kam smo povezali pina (s1, s2)
 #sw je spremenjivka, ki pove kam je povezana tipka(key)
 clk = 17
-dt = 18
+dt = 5
 sw = 27
 
 #nastavimo vhodne in izhodne enote
