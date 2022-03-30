@@ -37,6 +37,23 @@ def distance(trig, echo):
         #print("V spremenljivki __name__ se skriva", __name__)
         return razdalja
 
+
+r = random.randint(0,255)
+g = random.randint(0,255)
+b = random.randint(0,255)
+
+k = random.randint(1,3)
+def naklucje():
+    if k == 1:
+        r = 0
+    if k == 2:
+        g = 0
+    if k == 3:
+        b = 0
+    return(r,g,b)
+
+
+
 if __name__ == "__main__": #izvajamo skripto uzSenzor
         try:
                 trig = 26
@@ -76,24 +93,20 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
-                            r = random.randint(0,255)
-                            g = random.randint(0,255)
-                            b = random.randint(0,255)
-                            if r > 0 and g > 0:
-                                b = random.randint(100,255)
+                            k = random.randint(1,3)
+                            naklucje()
                             pixels[0] = (r,g,b)
-                            if g > 0 and b > 0:
-                                r = random.randint(100,255)
+                            k = random.randint(1,3)
+                            naklucje()
                             pixels[1] = (r,g,b)
-                            r = random.randint(0,255)
-                            g = random.randint(0,255)
-                            b = random.randint(0,255)
+                            k = random.randint(1,3)
+                            naklucje()
                             pixels[2] = (r,g,b)
-                            if r > 0 and g > 0:
-                                b = random.randint(100,255)
+                            k = random.randint(1,3)
+                            naklucje()
                             pixels[3] = (r,g,b)
-                            if g > 0 and b > 0:
-                                r = random.randint(100,255)
+                            k = random.randint(1,3)
+                            naklucje()
                             pixels[4] = (r,g,b)
                     
                     
