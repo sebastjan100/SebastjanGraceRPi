@@ -1,18 +1,19 @@
 import Adafruit_DHT
 
 DHT_SENSOR = Adafruit_DHT.DHT11
+DHT_PIN = 4
 
-def setDHT_pin(dht_pin):
-    #DHT_PIN=4
-    global DHT_PIN
-    DHT_PIN = dht_pin
+print("TMP [°C] , VLG [%]")
 
-def get_humidity():
-    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENZOR, DHT_PIN)
+while True:
+    humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
 
     if humidity is not None and temperature is not None:
-        return (humidity, temperature)
-
+        print(temperature, ",",  humidity)
+        if humidity >= 90.0:
+            print("Zivis v akvariju!")
+        if humidity <= 30.0:
+            print("Zivis v Sahari!")
     else:
-        return("No data hum", "No data temp")
-
+        print("Ups... 404... Ne dela... Preveri povezavo...")
+        print("IN se ena stvar... a mas mogoce kaj cipsa?")
