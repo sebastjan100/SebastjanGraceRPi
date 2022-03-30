@@ -42,18 +42,6 @@ r = random.randint(0,255)
 g = random.randint(0,255)
 b = random.randint(0,255)
 
-k = random.randint(1,3)
-def naklucje():
-    if k == 1:
-        r = 0
-    if k == 2:
-        g = 0
-    if k == 3:
-        b = 0
-    return r,g,b
-
-
-
 if __name__ == "__main__": #izvajamo skripto uzSenzor
         try:
                 trig = 26
@@ -94,19 +82,44 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
                             k = random.randint(1,3)
-                            naklucje()
+                            if k == 1:
+                                r = 0
+                            if k == 2:
+                                g = 0
+                            if k == 3:
+                                b = 0
                             pixels[0] = (r,g,b)
                             k = random.randint(1,3)
-                            naklucje()
+                            if k == 1:
+                                r = 0
+                            if k == 2:
+                                g = 0
+                            if k == 3:
+                                b = 0
                             pixels[1] = (r,g,b)
                             k = random.randint(1,3)
-                            naklucje()
+                            if k == 1:
+                                r = 0
+                            if k == 2:
+                                g = 0
+                            if k == 3:
+                                b = 0
                             pixels[2] = (r,g,b)
                             k = random.randint(1,3)
-                            naklucje()
+                            if k == 1:
+                                r = 0
+                            if k == 2:
+                                g = 0
+                            if k == 3:
+                                b = 0
                             pixels[3] = (r,g,b)
                             k = random.randint(1,3)
-                            naklucje()
+                            if k == 1:
+                                r = 0
+                            if k == 2:
+                                g = 0
+                            if k == 3:
+                                b = 0
                             pixels[4] = (r,g,b)
                     
                     
