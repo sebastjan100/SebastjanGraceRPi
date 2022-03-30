@@ -56,22 +56,22 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (0,0,0)
                             pixels[4] = (0,0,0)
                         if razd <= 12.9 and razd >= 11:
-                            pixels[0] = (200,255,0)
-                            pixels[1] = (200,255,0)
+                            pixels[0] = (220,255,0)
+                            pixels[1] = (220,255,0)
                             pixels[2] = (0,0,0)
                             pixels[3] = (0,0,0)
                             pixels[4] = (0,0,0)
                         if razd <= 10.9 and razd >= 9:
-                            pixels[0] = (255,255,0)
-                            pixels[1] = (255,255,0)
-                            pixels[2] = (255,255,0)
+                            pixels[0] = (255,200,0)
+                            pixels[1] = (255,200,0)
+                            pixels[2] = (255,200,0)
                             pixels[3] = (0,0,0)
                             pixels[4] = (0,0,0)
                         if razd <= 8.9 and razd >= 7:
-                            pixels[0] = (255,180,0)
-                            pixels[1] = (255,180,0)
-                            pixels[2] = (255,180,0)
-                            pixels[3] = (255,180,0)
+                            pixels[0] = (255,120,0)
+                            pixels[1] = (255,120,0)
+                            pixels[2] = (255,120,0)
+                            pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
                             pixels[0] = (255,0,0)
@@ -81,7 +81,7 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[4] = (255,0,0)
                     
                     
-                        time.sleep(2)
+                        time.sleep(0.5)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
