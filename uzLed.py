@@ -2,19 +2,14 @@ import RPi.GPIO as GPIO
 import time
 import board
 import neopixel
+import random
+pixels = neopixel.NeoPixel(board.D21, 5)
+
 GPIO.setmode(GPIO.BCM)
 
-
-pixel_pin = board.D21
-
-num_pixels = 5
-
-ORDER = neopixel.GRB
-
-pixels = neopixel.NeoPixel(
-    pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
-)
-
+r = random.randint(0,200)
+g = random.randint(0,200)
+b = random.randint(0,200)
 
 def initialize(trig, echo):
         # trig = 26
@@ -44,8 +39,6 @@ def distance(trig, echo):
 
         #print("V spremenljivki __name__ se skriva", __name__)
         return razdalja
-
-
 
 if __name__ == "__main__": #izvajamo skripto uzSenzor
         try:
@@ -86,37 +79,29 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
-                            for j in range(255):
-                                for i in range(num_pixels):
-                                    pixel_index = (i * 256 // num_pixels) + j
-                                    pos = pixel_index & 255
-                                    pixels[i] = pos
-                            
-                            if pos < 0 or pos > 255:
-                                r = g = b = 0
-                            elif pos < 85:
-                                r = int(pos * 3)
-                                g = int(255 - pos * 3)
-                                b = 0
-                            elif pos < 170:
-                                pos -= 85
-                                r = int(255 - pos * 3)
-                                g = 0
-                                b = int(pos * 3)
-                            else:
-                                pos -= 170
-                                r = 0
-                                g = int(pos * 3)
-                                b = int(255 - pos * 3)
-
-                            pixels.show()
-                            
-                        time.sleep(0.1)
+                            r = random.randint(0,200)
+                            g = random.randint(0,200)
+                            b = random.randint(0,200)
+                            pixels[0] = (r,g,b)
+                            r = random.randint(0,200)
+                            g = random.randint(0,200)
+                            b = random.randint(0,200)
+                            pixels[1] = (r,g,b)
+                            r = random.randint(0,200)
+                            g = random.randint(0,200)
+                            b = random.randint(0,200)
+                            pixels[2] = (r,g,b)
+                            r = random.randint(0,200)
+                            g = random.randint(0,200)
+                            b = random.randint(0,200)
+                            pixels[3] = (r,g,b)
+                            r = random.randint(0,200)
+                            g = random.randint(0,200)
+                            b = random.randint(0,200)
+                            pixels[4] = (r,g,b)
+                    
+                    
+                        time.sleep(0.5)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
-
-
-
-
-
