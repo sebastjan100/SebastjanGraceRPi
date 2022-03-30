@@ -1,103 +1,68 @@
 import RPi.GPIO as GPIO
 import time
 
-import Adafruit_GPIO.SPI as SPI
-import Adafruit_SSD1306
+import uzSenzor as UZ
+import vlaga as DHT
+#import poslji
 import poslji
 
-from PIL import Image
-from PIL import ImageDraw
-from PIL import ImageFont
+import Adafruit_SSD1306
 
+from PIL import Image, ImageDraw, ImageFont
 import subprocess
-import vlaga as DHT
-
-GPIO.setmode(GPIO.BCM)
-
-RST = None
-DC = 23
-SPI_PORT = 0
-SPI_DEVICE = 0
-
+# Raspberry Pi pin configuration:
+RST = None     # on the PiOLED this pin isnt used
+# 128x32 display with hardware I2C:
 disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
-
-url = "https://gracewebapp-sebastjantekavc.online404.repl.co/"
-apikey = "sebastjan"
-
+# web app data
+url = "kva te briga moj url?"
+apikey = "kva te briga moj key?"
+# Initialize library.
 disp.begin()
-
+# Clear display.
 disp.clear()
 disp.display()
-
+# Create blank image for drawing.
+# Make sure to create image with mode '1' for 1-bit color.
 width = disp.width
 height = disp.height
 image = Image.new('1', (width, height))
-
+# Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
-
+# Draw a black filled box to clear the image.
 draw.rectangle((0,0,width,height), outline=0, fill=0)
+# Draw some shapes.
+# First define some constants to allow easy resizing of shapes.
 padding = -2
 top = padding
 bottom = height-padding
+# Move left to right keeping track of the current x position for drawing shapes.
 x = 0
-
+# Load default font.
 font = ImageFont.load_default()
-
-def initialize(trig, echo):
-    #trig = 26
-    #echo = 19
-    GPIO.setup(trig, GPIO.OUT)
-    GPIO.setup(echo, GPIO.IN)
-
-def distance(trig, echo):
-
-    GPIO.output(trig, 1) #zapiskamo
-    time.sleep(0.00001) #počakamo 0.01ms
-    GPIO.output(trig, 0) #nehamo piskati
-
-    zacetniCas = time.time()
-    koncniCas = time.time()
-
-    while GPIO.input(echo) == 0: #čakamo dokler je tišina
-        zacetniCas = time.time()
-
-    while GPIO.input(echo) == 1: #čakamo dokler slišimo pisk
-        koncniCas = time.time()
-
-    razlikaCas = koncniCas - zacetniCas
-
-    razdalja = (razlikaCas * 34315)/2 #centimetri
-
-    print("V spremenljivki __name__ se nahaja", __name__)
-    return razdalja
-
-
-try:
-    trig = 26
-    echo = 19
-    initialize(trig, echo)
-    dht_pin = 4
-    DHT.setDHT_pin(dht_pin)
-    while True:
-        draw.rectangle((0,0,width,height), outline=0, fill=0)
-
-        cmd = "hostname -I | cut -d\' \' -f1"
-        IP = subprocess.check_output(cmd, shell = True )
-        draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
-        
-        razd = distance(trig, echo)
-        print("Izmerjena razdalja je", razd, "cm.")
-        poslji.posljiUZ(razd, url, "/api/uz/", apikey)
-
-        data = DHT.get_humidity()
-        draw.text((x, top+16),    "Humidity: " + str(data[0]) + "%",  font=font, fill=255)
-        draw.text((x, top+24),    "Temperature: " + str(data[1]) + "°C",  font=font, fill=255)
-        poslji.posljiDHT(data, url, "/api/dht/", apikey)
-
-        disp.image(image)
-        disp.display()
-        time.sleep(2)
-        
+trig = 26
+echo = 19
+UZ.initialize(trig, echo) 
+dht_pin = 4
+DHT.setDHT_pin(dht_pin)
+try: 
+        while True:
+                draw.rectangle((0,0,width,height), outline=0, fill=0)
+                cmd = "hostname -I | cut -d\' \' -f1"
+                IP = subprocess.check_output(cmd, shell = True )
+                draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
+                razd = UZ.distance(trig, echo)
+                print("Izmerjena razdalja je", razd, "cm.")
+                draw.text((x, top+8),  "Razdalja:" + str(round(razd,2)) + " cm", font=font, fill=255)
+                poslji.posljiUZ(razd, url, "/api/uz/", apikey)
+                data = DHT.get_humidity()
+                print("Vlaga", data[0], "temp", data[1])
+                draw.text((x, top+8),  "HUM:" + str(data[0]) + " %", font=font, fill=255)
+                draw.text((x, top+8),  "TEMP:" + str(data[1]) + " cm", font=font, fill=255)
+                poslji.posljiDHT(data, url, "/api/dht/", apikey)
+                disp.image(image)
+                disp.display()
+                time.sleep(1)
 except KeyboardInterrupt:
-    print("Ctrl + C pritisnjen")
-    GPIO.cleanup
+        print("Uporabnik je pritisnil ctrl + c.")
+        GPIO.cleanup()
