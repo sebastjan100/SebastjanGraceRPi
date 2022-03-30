@@ -122,7 +122,7 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             rainbow_cycle(0.001)
                     
                     
-                        time.sleep(0.5)
+                        #time.sleep(0.5)
         except KeyboardInterrupt:
                 print("Uporabnik je pritisnil ctrl + c.")
                 GPIO.cleanup()
