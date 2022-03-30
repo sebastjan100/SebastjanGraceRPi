@@ -70,15 +70,6 @@ def wheel(pos):
     return (r, g, b) if ORDER in (neopixel.RGB, neopixel.GRB) else (r, g, b, 0)
 
 
-def rainbow_cycle(wait):
-    for j in range(255):
-        for i in range(num_pixels):
-            pixel_index = (i * 256 // num_pixels) + j
-            pixels[i] = wheel(pixel_index & 255)
-        pixels.show()
-        time.sleep(wait)
-
-
 
 if __name__ == "__main__": #izvajamo skripto uzSenzor
         try:
@@ -119,6 +110,13 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
+                            def rainbow_cycle(wait):
+                                for j in range(255):
+                                    for i in range(num_pixels):
+                                        pixel_index = (i * 256 // num_pixels) + j
+                                        pixels[i] = wheel(pixel_index & 255)
+                                    pixels.show()
+                                    time.sleep(wait)
                             rainbow_cycle(0.001)
                             
                         time.sleep(0.1)
