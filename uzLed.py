@@ -3,13 +3,10 @@ import time
 import board
 import neopixel
 import random
-pixels = neopixel.NeoPixel(board.D21, 5)
 
 GPIO.setmode(GPIO.BCM)
 
-r = random.randint(0,200)
-g = random.randint(0,200)
-b = random.randint(0,200)
+pixels = neopixel.NeoPixel(board.D21, 5)
 
 def initialize(trig, echo):
         # trig = 26
@@ -79,25 +76,23 @@ if __name__ == "__main__": #izvajamo skripto uzSenzor
                             pixels[3] = (255,120,0)
                             pixels[4] = (0,0,0)
                         if razd <= 6.9:
-                            r = random.randint(0,200)
-                            g = random.randint(0,200)
-                            b = random.randint(0,200)
+                            r = random.randint(0,255)
+                            g = random.randint(0,255)
+                            b = random.randint(0,255)
+                            if r > 0 and g > 0:
+                                b = 0
                             pixels[0] = (r,g,b)
-                            r = random.randint(0,200)
-                            g = random.randint(0,200)
-                            b = random.randint(0,200)
+                            if g > 0 and b > 0:
+                                r = 0
                             pixels[1] = (r,g,b)
-                            r = random.randint(0,200)
-                            g = random.randint(0,200)
-                            b = random.randint(0,200)
+                            if b > 0 and r > 0:
+                                g = 0
                             pixels[2] = (r,g,b)
-                            r = random.randint(0,200)
-                            g = random.randint(0,200)
-                            b = random.randint(0,200)
+                            if r > 0 and g > 0:
+                                b = 0
                             pixels[3] = (r,g,b)
-                            r = random.randint(0,200)
-                            g = random.randint(0,200)
-                            b = random.randint(0,200)
+                            if g > 0 and b > 0:
+                                r = 0
                             pixels[4] = (r,g,b)
                     
                     
