@@ -32,7 +32,7 @@ def distance(trig, echo):
         
         razlikaCas = koncniCas - zacetniCas
 
-        razdalja = (razlikaCas * 34200)/2 #izračunamo razdaljo, delimo z dve ker zvok prepotuje dvojno pot do ovire
+        razdalja = (razlikaCas * 34200) / 2 #izračunamo razdaljo, delimo z dve ker zvok prepotuje dvojno pot do ovire
 
         #print("V spremenljivki __name__ se skriva", __name__)
         return razdalja
