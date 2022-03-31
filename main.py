@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
-import ultra_sonic_sensor as US
-import dht as DHT
+import uzSenzor as US
+import vlaga as DHT
 import send
 import pir as PIR
 import encoder as ENC
